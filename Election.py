@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-# List of Nepali news websites (example pages)
+# List of Nepali news websites
 news_sites = [
     "https://kathmandupost.com",
     "https://thehimalayantimes.com",
@@ -36,7 +36,7 @@ def scrape_site(url):
 
                 articles_found.append((title, href))
 
-        return articles_found[:3]  # Return top 3 articles
+        return articles_found  #  Return ALL matching articles
 
     except Exception as e:
         print(f"Error scraping {url}: {e}")
@@ -52,8 +52,8 @@ for site in news_sites:
 
 # Print results
 if all_articles:
-    print("\nArticles mentioning Election:\n")
-    for idx, (title, link) in enumerate(all_articles[:3], 1):
+    print(f"\nArticles mentioning '{keyword}':\n")
+    for idx, (title, link) in enumerate(all_articles, 1):  #  No slicing here
         print(f"{idx}. {title}")
         print(f"   Link: {link}\n")
 else:
